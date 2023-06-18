@@ -2,14 +2,15 @@ version: '3.8'
 
 services:
   web:
-    container_name: server
+    container_name: web
     build:
       context: .
-      dockerfile: Dockerfile.local
+      dockerfile: Dockerfile
     command: python manage.py robel_dbunserver 0.0.0.0:8000
     volumes:
       - ./:/code/
       - static_volume:/code/staticfiles/
+      - ./:/code/
     ports:
       - 8000:8000
       - 3000:3000
@@ -18,6 +19,7 @@ services:
     depends_on:
       - db
   db:
+    container_name: db
     image: postgres:13.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
@@ -26,7 +28,7 @@ services:
       - POSTGRES_PASSWORD=4ndr0id!@
       - POSTGRES_DB=android_db
     ports:
-      - "15432:5432"
+      - "5432:5432"
 volumes:
   static_volume:
   postgres_data:
