@@ -19,15 +19,14 @@ class TimeStampModel(models.Model):
 class Person(models.Model):
     first_name = models.CharField(max_length=200, null=True, blank=True)
     last_name = models.CharField(max_length=200, null=True, blank=True)
-    birth_date = models.DateField()
-    address = models.CharField(max_length=200, null=True, blank=True)
+    age = models.IntegerField(null=True, blank=True)
     phone = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField()
     gender = models.CharField(max_length=200,
                               choices=GENDER_OPTION,
                               default='No especificado')
-    user = models.OneToOneField('auth.User', on_delete=models.PROTECT, null=True, blank=True)
     document_number = models.CharField(max_length=200)
+    user = models.OneToOneField('auth.User', on_delete=models.PROTECT, null=True, blank=True)
 
 
     class Meta:

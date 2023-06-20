@@ -49,15 +49,18 @@ INSTALLED_APPS = [
     'corsheaders',
     'drf_yasg',
     
-    # 'auditlog',
     # Local apps
     'base',
-    'clinic',
     'attendance',
-    'doctors',
     'patient',
-    'attendance_calendar'
+
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -90,11 +93,7 @@ CORS_ALLOWED_METHODS = [
     'PUT',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
-}
+
 
 TEMPLATES = [
     {
